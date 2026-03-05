@@ -5,6 +5,7 @@ export default function SearchBar({ onSearch }){
 
     function handleSubmit(e){
         e.preventDefault();
+        if(!input.trim()) return;
         onSearch(input);
     }
 
