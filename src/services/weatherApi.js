@@ -58,7 +58,7 @@ export async function fetchWeatherBundle(city){
 
 
     const location = forecastData.location;
-    const todayDay = forecastData.forecast.forecastday[0].day;
+    const todayDay = forecastData.forecast.forecastday[0];
 
     const yesterdayDay = historyData.forecast.forecastday[0];
 
@@ -78,9 +78,10 @@ export async function fetchWeatherBundle(city){
             country: location.country,
         },
         today:{
-            temp: todayDay.avgtemp_c,
-            description:todayDay.condition.text,
-            iconUrl: "https:" + todayDay.condition.icon,
+            date:todayDay.date,
+            temp: todayDay.day.avgtemp_c,
+            description:todayDay.day.condition.text,
+            iconUrl: "https:" + todayDay.day.condition.icon,
             country: location.country
         },
         yesterday:{
