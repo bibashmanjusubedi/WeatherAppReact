@@ -11,7 +11,7 @@ function requireKey(){
 
 // Today + next 4 days ( total 5 days)
 async function fetchForecast(city,days=4){
-    console.log(requireKey());
+    // console.log(requireKey());
     requireKey();
     const url = `${BASE_URL}/forecast.json?key=${KEY}&q=${encodeURIComponent(
         city
@@ -52,13 +52,25 @@ async function fetchHistory(city){
 export async function fetchWeatherBundle(city){
 
     const[forecastData,historyData] = await Promise.all([
-        fetchForecast(city),
+        fetchForecast(city,5),
         fetchHistory(city)
     ]);
 
 
     const location = forecastData.location;
     const todayDay = forecastData.forecast.forecastday[0].day;
+
+    const yesterdayDay = historyData.forecast.forecastday[0];
+
+    const nextDays= forecastData.forecast.forecastday
+                        .slice(1,5)
+                        .map((item) => ({
+                            date:item.date,
+                            temp:item.day.avgtemp_c,
+                            description:item.day.condition.text,
+                            iconUrl:"https:"+ item.day.condition.icon
+                        }));
+
 
     return {
         location:{
@@ -71,7 +83,14 @@ export async function fetchWeatherBundle(city){
             iconUrl: "https:" + todayDay.condition.icon,
             country: location.country
         },
-        forecast: forecastData,
-        history: historyData
+        yesterday:{
+            date:yesterdayDay.date,
+            temp:yesterdayDay.day.avgtemp_c,
+            description:yesterdayDay.day.condition.text,
+            iconUrl:"https:" + yesterdayDay.day.condition.icon
+        },
+        nextDays
+        // forecast: forecastData,
+        // history: historyData
     };
 }
