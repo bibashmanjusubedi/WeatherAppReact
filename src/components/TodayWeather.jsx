@@ -46,7 +46,7 @@ export default function TodayWeather({ city, weather, loading, error }) {
     return (
       <div style={{ border: "1px solid #ddd", padding: 16, borderRadius: 12 }}>
         <h2>
-          Today — {city}
+          Today({weather.date}) — {city}
           {weather.country ? `, ${weather.country}` : ""}
         </h2>
   
