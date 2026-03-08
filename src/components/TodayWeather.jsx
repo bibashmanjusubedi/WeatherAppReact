@@ -50,7 +50,7 @@ export default function TodayWeather({ city, weather, loading, error }) {
           {weather.country ? `, ${weather.country}` : ""}
         </h2>
   
-        <div style={{ display: "flex", alignItems: "center",justifyContent:"center", gap: 12 }}>
+        <div style={{ display: "flex",flexDirection:"column", alignItems: "center",justifyContent:"center", gap: 12 }}>
           {weather.iconUrl ? (
             <img
               src={weather.iconUrl}
