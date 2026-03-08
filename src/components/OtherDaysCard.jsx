@@ -2,33 +2,45 @@
 export default function OtherDaysCard({ day,label }){
     if(!day) return null;
 
-    return(
-        <div
-            style={{
-                border:"1px solid #ddd",
-                borderRadius:12,
-                padding: 16,
-                minWidth: 160,
-                textAlign: "center",
-            }}
-        >
-                <h3 style={{ marginBottom:12 }}> {label ? `${day.date} - ${label}` : day.date}</h3>
-                {day.iconUrl ? (
-                    <img
-                        src={day.iconUrl}
-                        alt={day.description || "Weather icon"}
-                        width={64}
-                        height={64}
-                    />
-                ): null}
+    // return(
+    //     <div
+    //         style={{
+    //             border:"1px solid #ddd",
+    //             borderRadius:12,
+    //             padding: 16,
+    //             minWidth: 160,
+    //             textAlign: "center",
+    //         }}
+    //     >
+    //             <h3 style={{ marginBottom:12 }}> {label ? `${day.date} - ${label}` : day.date}</h3>
+    //             {day.iconUrl ? (
+    //                 <img
+    //                     src={day.iconUrl}
+    //                     alt={day.description || "Weather icon"}
+    //                     width={64}
+    //                     height={64}
+    //                 />
+    //             ): null}
 
-                <div style={{ fontSize:28, fontWeight:700,marginTop:8 }}>
-                    {day.temp ?? "--"} °C
-                </div>
+    //             <div style={{ fontSize:28, fontWeight:700,marginTop:8 }}>
+    //                 {day.temp ?? "--"} °C
+    //             </div>
 
-                <div style={{ opacity:0.8,marginTop:6 }}>
-                    {day.description || "_"}
-                </div>
-            </div>
-        );
+    //             <div style={{ opacity:0.8,marginTop:6 }}>
+    //                 {day.description || "_"}
+    //             </div>
+    //         </div>
+    //     );
+
+    return (
+        <div className="forecast-card">
+            <h3 className="forecast-day">{label ? `${day.date} - ${label}` : day.date}</h3>
+            <img
+                className="forecast-icon"
+                src= {day.iconUrl}
+                alt = {day.description}
+                />
+            <p className="forecast-temp">{day.temp} °C</p>
+        </div>
+    )    
 }
