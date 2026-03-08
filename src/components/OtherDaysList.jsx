@@ -26,7 +26,7 @@ export default function OtherDaysList({ days,loading,error }){
                 }}
             >
                 {days.map((day,index) => (
-                    <OtherDaysCard key={index} day={day} />
+                    <OtherDaysCard key={index} day={day} label={index === 0 ? "Yesterday":index ===1 ? "Tomorrow":null}/>
                 ))}
             </div>
         </div>

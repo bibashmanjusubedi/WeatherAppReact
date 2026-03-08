@@ -1,5 +1,5 @@
 // shows yesterday and next 4 days
-export default function OtherDaysCard({ day }){
+export default function OtherDaysCard({ day,label }){
     if(!day) return null;
 
     return(
@@ -12,7 +12,7 @@ export default function OtherDaysCard({ day }){
                 textAlign: "center",
             }}
         >
-                <h3 style={{ marginBottom:12 }}>{day.date}</h3>
+                <h3 style={{ marginBottom:12 }}> {label ? `${day.date} - ${label}` : day.date}</h3>
                 {day.iconUrl ? (
                     <img
                         src={day.iconUrl}
