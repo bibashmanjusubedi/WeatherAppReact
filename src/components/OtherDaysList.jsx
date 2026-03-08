@@ -1,6 +1,6 @@
 import OtherDaysCard from "./OtherDaysCard";
 
-export default function ForecastList({ days,loading,error }){
+export default function OtherDaysList({ days,loading,error }){
     if(loading){
         return <p>Loading forecast....</p>
     }
@@ -26,7 +26,7 @@ export default function ForecastList({ days,loading,error }){
                 }}
             >
                 {days.map((day,index) => (
-                    <ForecastCard key={index} day={index} />
+                    <OtherDaysCard key={index} day={day} />
                 ))}
             </div>
         </div>

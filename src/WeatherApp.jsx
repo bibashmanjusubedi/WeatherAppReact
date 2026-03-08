@@ -2,6 +2,7 @@ import { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import TodayWeather from "./components/TodayWeather";
 import { fetchWeatherBundle } from "./services/weatherApi";
+import OtherDaysList from "./components/OtherDaysList";
 
 export default function WeatherApp(){
     const[city,setCity] = useState("");
@@ -13,8 +14,10 @@ export default function WeatherApp(){
         const data = await fetchWeatherBundle(cityName);
         console.log(data);
 
-        setWeather(data.today);
+        setWeather(data);
     }
+
+    const otherDays = weather ? [weather.yesterday, ...weather.nextDays] :[];
 
     return (
         <>
@@ -23,8 +26,10 @@ export default function WeatherApp(){
                 <h2>Selected city: {city}</h2>
             </div>
             <div>
-                <TodayWeather city={city} weather={weather}/>
-            </div>  
+                <TodayWeather city={city} weather={weather?.today}/>
+            </div>
+
+            <OtherDaysList days={otherDays} loading={!weather} error={null}/> 
         </>
     );
 }

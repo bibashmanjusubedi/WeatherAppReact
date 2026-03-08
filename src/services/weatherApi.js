@@ -63,7 +63,7 @@ export async function fetchWeatherBundle(city){
     const yesterdayDay = historyData.forecast.forecastday[0];
 
     const nextDays= forecastData.forecast.forecastday
-                        .slice(1,5)
+                        .slice(1,4)
                         .map((item) => ({
                             date:item.date,
                             temp:item.day.avgtemp_c,
